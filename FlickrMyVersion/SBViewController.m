@@ -8,6 +8,8 @@
 
 #import "SBViewController.h"
 #import "SBServerManager.h"
+#import "SBModel.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface SBViewController ()
 
@@ -17,13 +19,15 @@
 
 @implementation SBViewController
 
-static NSInteger responsePhotoCount = 20;
+static NSInteger responsePhotoCount = 500;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.photoArray = [NSMutableArray array];
+    NSMutableArray* photoArray = [NSMutableArray array];
+    
+    self.photoArray = photoArray;
 
     [self getPhotoFromFlickr];
 
@@ -59,11 +63,29 @@ static NSInteger responsePhotoCount = 20;
     
     static NSString* identifier = @"Cell";
     
-    UITableViewCell* cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
     if (!cell) {
-        cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
+    
+    SBModel* photos = [self.photoArray objectAtIndex:indexPath.row];
+    
+    //cell.textLabel.text = [NSString stringWithFormat:@"%@", photos.title];
+    
+    NSURLRequest* request = [NSURLRequest requestWithURL:photos.imageURL];
+    
+    __weak UITableViewCell* weakCell = cell;
+    
+    [cell.imageView setImageWithURLRequest:request
+    placeholderImage:nil
+    success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        weakCell.imageView.image = image;
+        [weakCell layoutSubviews];
+        
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        
+    }];
     
     return cell;
 }

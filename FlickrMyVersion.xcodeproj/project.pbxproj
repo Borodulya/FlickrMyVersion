@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8471BF7C1A3B8B5E009D70C9 /* SBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8471BF7B1A3B8B5E009D70C9 /* SBModel.m */; };
 		8499CA4D1A3902BD00D99918 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8499CA4C1A3902BD00D99918 /* Foundation.framework */; };
 		8499CA4F1A3902BD00D99918 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8499CA4E1A3902BD00D99918 /* CoreGraphics.framework */; };
 		8499CA511A3902BD00D99918 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8499CA501A3902BD00D99918 /* UIKit.framework */; };
@@ -52,6 +53,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8471BF7A1A3B8B5E009D70C9 /* SBModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBModel.h; sourceTree = "<group>"; };
+		8471BF7B1A3B8B5E009D70C9 /* SBModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBModel.m; sourceTree = "<group>"; };
 		8499CA491A3902BD00D99918 /* FlickrMyVersion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrMyVersion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8499CA4C1A3902BD00D99918 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8499CA4E1A3902BD00D99918 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -169,6 +172,8 @@
 			isa = PBXGroup;
 			children = (
 				8499CA841A390A0C00D99918 /* Libs */,
+				8471BF7A1A3B8B5E009D70C9 /* SBModel.h */,
+				8471BF7B1A3B8B5E009D70C9 /* SBModel.m */,
 				8499CA811A3909A900D99918 /* SBServerManager.h */,
 				8499CA821A3909A900D99918 /* SBServerManager.m */,
 				8499CA5B1A3902BD00D99918 /* SBAppDelegate.h */,
@@ -386,6 +391,7 @@
 				8499CAAE1A390A0C00D99918 /* AFNetworkReachabilityManager.m in Sources */,
 				8499CAB21A390A0C00D99918 /* AFURLResponseSerialization.m in Sources */,
 				8499CABB1A390A0C00D99918 /* UIWebView+AFNetworking.m in Sources */,
+				8471BF7C1A3B8B5E009D70C9 /* SBModel.m in Sources */,
 				8499CAB31A390A0C00D99918 /* AFURLSessionManager.m in Sources */,
 				8499CAB41A390A0C00D99918 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				8499CA831A3909A900D99918 /* SBServerManager.m in Sources */,
@@ -593,6 +599,7 @@
 				8499CA7D1A3902BD00D99918 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8499CA7E1A3902BD00D99918 /* Build configuration list for PBXNativeTarget "FlickrMyVersionTests" */ = {
 			isa = XCConfigurationList;
@@ -601,6 +608,7 @@
 				8499CA801A3902BD00D99918 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -8,6 +8,7 @@
 
 #import "SBServerManager.h"
 #import "AFNetworking.h"
+#import "SBModel.h"
 
 @interface SBServerManager ()
 
@@ -35,7 +36,7 @@
     
     if (self) {
         
-        NSURL* baseUrl = [NSURL URLWithString:@"https://api.flickr.com/services/rest/"];
+        NSURL* baseUrl = [NSURL URLWithString:nil];
         self.operationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseUrl];
         
     }
@@ -47,19 +48,39 @@
                   onFailure:(void(^)(NSError* error, NSInteger statusCode))failure {
     
     NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            @"b7feaac025b0fe2495172aaee44a6660", @"api_key",
-                            @"url_n", @"extras",
+                            @"url_z", @"extras",
                             @(count), @"per_page",nil];
     
     [self.operationManager
-     GET:@"flickr.interestingness.getList"
+     GET:@"https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=b7feaac025b0fe2495172aaee44a6660&format=json&nojsoncallback=1"
      parameters:params
-     success:^(AFHTTPRequestOperation *operation, id responseObject) {
+     success:^(AFHTTPRequestOperation *operation, NSDictionary* responseObject) {
         NSLog(@"JSON: %@", responseObject);
          
+         NSDictionary* photoDict = [responseObject objectForKey:@"photos"];
+         
+         NSArray* photoArray = [photoDict objectForKey:@"photo"];
+         
+         NSMutableArray* photoMut = [NSMutableArray array];
+         
+         for (NSDictionary* dict in photoArray) {
+             SBModel* model = [[SBModel alloc] initWithServerResponse:dict];
+             [photoMut addObject:model];
+         }
+         
+         NSLog(@"JSON: %@", photoMut);
+         
+         if (success) {
+             success(photoMut);
+         }
          
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
+        
+        if (failure) {
+            failure(error, operation.response.statusCode);
+        }
+        
     }];
     
 }
